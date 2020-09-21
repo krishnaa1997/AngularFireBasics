@@ -1,2 +1,3 @@
-# AngularFireBasics
-Angular 8 + Firebase (Realtime database)
+# AngularFirebasics
+
+Angular + Firebase (Realtime database)
