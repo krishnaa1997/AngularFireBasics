@@ -16,4 +16,8 @@ export class EmployeeServiceService {
   {
     return this.db.collection('employee').snapshotChanges();
   }
+  getEmployeeByName(name)
+  {
+    return this.db.collection('employee',ref => ref.where('name','==',name));
+  }
 }
