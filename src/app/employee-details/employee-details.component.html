@@ -1,9 +1,13 @@
 <!-- Just an image -->
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-      Demo
+      CRUD
     </a>
+    <button class="btn btn-warning" (click)="logOut()">Logout</button>
   </nav>
+  <!-- <div class="row">
+    <h4>{{authService.currentUserId()}}</h4>
+  </div> -->
   <div class="row mt-5">
   <div class="col-md-3">
     <table class="table table-dark">
@@ -74,7 +78,7 @@
 </div>
 
 
-<div class="col-md-3">
+<div class="col-md-6">
     <table class="table table-dark">
         <thead>
           <tr>
@@ -95,8 +99,5 @@
           </tr>
         </tbody>
       </table>
-</div>
-<div class="col-md-3">
-    <h2> Update</h2>
 </div>
 </div>

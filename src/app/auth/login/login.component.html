@@ -1,0 +1,57 @@
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="text"><h3>Login</h3></div>
+    </nav>
+    <div class="form">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="row mt-5">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <label for="email"><b>Email Id</b></label>
+        </div>
+        <div class="col-md-4 form-group">
+            <input type="email" class="form-control input-style" id="email" formControlName="email" />
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <label for="password"><b>Password</b></label>
+        </div>
+        <div class="col-md-4 form-group">
+            <input type="password" class="form-control input-style" id="password" formControlName="password" />
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-warning">Login</button>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-2">
+        <a routerLink='/signup'>Want to register</a></div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</form>
+</div>
+</div>

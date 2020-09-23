@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Employee} from '../models/employee';
 import {EmployeeServiceService} from '../services/employee-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Subscription} from 'rxjs';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -12,16 +14,17 @@ export class EmployeeDetailsComponent implements OnInit {
   employees: Employee[];
   addEmployee: FormGroup;
   submitted: boolean=false;
+  private fbSubs: Subscription[]=[];
 
 
-  constructor(private service: EmployeeServiceService, private formBuilder: FormBuilder) { }
+  constructor(private service: EmployeeServiceService, private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.service.getAllEmployees().subscribe(data=>{
+    this.fbSubs.push(this.service.getAllEmployees().subscribe(data=>{
       console.log(data);
-    });
+    }));
 
-    this.service.getAllEmployeesWithId().subscribe(data =>{
+    this.fbSubs.push(this.service.getAllEmployeesWithId().subscribe(data =>{
       this.employees= data.map(e=>{
         return {
           id: e.payload.doc.id,
@@ -31,11 +34,11 @@ export class EmployeeDetailsComponent implements OnInit {
         };
       })
       console.log(this.employees);
-    });
+    }));
 
-    this.service.getEmployeeByName('krishna').valueChanges().subscribe(data=>{
+    this.fbSubs.push(this.service.getEmployeeByName('krishna').valueChanges().subscribe(data=>{
       console.log(data);
-    });
+    }));
 
     this.addEmployee= this.formBuilder.group({
       name: ['', Validators.required],
@@ -43,6 +46,11 @@ export class EmployeeDetailsComponent implements OnInit {
       age:['', Validators.required]
     }); 
     
+  }
+
+  cancelSubscription()
+  {
+    this.fbSubs.forEach(sub => sub.unsubscribe());
   }
 
   add()
@@ -56,6 +64,12 @@ export class EmployeeDetailsComponent implements OnInit {
   {
     console.log(employee.id);
     this.service.deleteEmployee(employee);
+  }
+
+  logOut()
+  {
+    this.cancelSubscription();
+    this.authService.logOut();
   }
 
 }
