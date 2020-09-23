@@ -5,8 +5,10 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.prod';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

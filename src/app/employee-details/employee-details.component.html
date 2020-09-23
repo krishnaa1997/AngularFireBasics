@@ -1,1 +1,102 @@
-<p>employee-details works!</p>
+<!-- Just an image -->
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      Demo
+    </a>
+  </nav>
+  <div class="row mt-5">
+  <div class="col-md-3">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Mobile No.</th>
+          </tr>
+        </thead>
+        <tbody *ngFor='let employee of employees; let i=index'>
+          <tr>
+            <th scope="row">{{i+1}}</th>
+            <td>{{employee.name}}</td>
+            <td>{{employee.age}}</td>
+            <td>{{employee.mobile}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+
+  <div class="col-md-3">
+    <form [formGroup]="addEmployee" (ngSubmit)="add()">
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="Name">Name : </label>
+                </div>
+                <div class="col-md-7 form-group">
+
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-style" id="Name" formControlName="name" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="Age">Age : </label>
+                </div>
+                <div class="col-md-7 form-group">
+
+                    <div class="col-xs-4">
+                        <input type="number" class="form-control input-style" id="Age"
+                            formControlName="age" />
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="Mobile">Mobile : </label>
+                </div>
+                <div class="col-md-7 form-group">
+                <input type="number" name="Mobile" class="form-control input-style" id="Mobile"
+                    formControlName="mobile" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-right button-style">
+                    <button class="btn btn-warning btn-right">Add</button>
+
+                </div>
+            </div>
+    </form>
+</div>
+
+
+<div class="col-md-3">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Mobile No.</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody *ngFor='let employee of employees; let i=index'>
+          <tr>
+            <th scope="row">{{i+1}}</th>
+            <td>{{employee.name}}</td>
+            <td>{{employee.age}}</td>
+            <td>{{employee.mobile}}</td>
+            <td><button class="btn btn-warning" (click)="delete(employee)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<div class="col-md-3">
+    <h2> Update</h2>
+</div>
+</div>
