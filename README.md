@@ -1,4 +1,4 @@
 # AngularFirebasics
 
-Angular + Firebase (Realtime database)
+Angular + Firebase (Cloud Firestore)
 Hosted URL - https://ng-category.web.app/
