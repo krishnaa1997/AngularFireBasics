@@ -4,6 +4,7 @@ import {EmployeeServiceService} from '../services/employee-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Subscription} from 'rxjs';
+import { EmployeeGet } from '../models/employeeGet';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -15,6 +16,7 @@ export class EmployeeDetailsComponent implements OnInit {
   addEmployee: FormGroup;
   submitted: boolean=false;
   private fbSubs: Subscription[]=[];
+  addEmployeeDetails: Employee;
 
 
   constructor(private service: EmployeeServiceService, private formBuilder: FormBuilder, private authService: AuthService) { }
@@ -24,19 +26,20 @@ export class EmployeeDetailsComponent implements OnInit {
       console.log(data);
     }));
 
-    this.fbSubs.push(this.service.getAllEmployeesWithId().subscribe(data =>{
+    this.fbSubs.push(this.service.getAllEmployeesWithId(this.authService.userId).snapshotChanges().subscribe(data =>{
       this.employees= data.map(e=>{
         return {
           id: e.payload.doc.id,
           name: e.payload.doc.data()['name'],
           mobile: e.payload.doc.data()['mobile'],
-          age: e.payload.doc.data()['age']
+          age: e.payload.doc.data()['age'],
+          userId: e.payload.doc.data()['userId']
         };
       })
       console.log(this.employees);
     }));
 
-    this.fbSubs.push(this.service.getEmployeeByName('krishna').valueChanges().subscribe(data=>{
+    this.fbSubs.push(this.service.getEmployeeByName().valueChanges().subscribe(data=>{
       console.log(data);
     }));
 
@@ -70,6 +73,7 @@ export class EmployeeDetailsComponent implements OnInit {
   {
     this.cancelSubscription();
     this.authService.logOut();
+
   }
 
 }

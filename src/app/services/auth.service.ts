@@ -8,7 +8,9 @@ import {Router} from '@angular/router';
 export class AuthService {
 
   //authState: any=null;
-  isAuthenticated: boolean=false;
+  isAuthenticated: boolean=true;
+  userId: string;
+  userMailId: string;
 
   constructor(private fauth: AngularFireAuth, private route: Router) {
 
@@ -16,6 +18,7 @@ export class AuthService {
 
    register(registerForm)
    {
+     
      return this.fauth.auth.createUserWithEmailAndPassword(registerForm.email,registerForm.password).then((user)=>{
        //this.authState=user;
        console.log(user);
@@ -29,7 +32,9 @@ export class AuthService {
    {
     return this.fauth.auth.signInWithEmailAndPassword(loginForm.email,loginForm.password).then((user)=>{
       //this.authState=user;
-      console.log(user);
+      //console.log(user);
+      this.userId=user.user.uid;
+
       this.isAuthenticated=true;
     }).catch(error =>{
       console.log(error);
@@ -42,11 +47,18 @@ export class AuthService {
     this.fauth.authState.subscribe(user =>{
       if(user)
       {
+        this.userId=user.uid;
+        this.userMailId=user.email;
+        console.log(this.userId);
         this.isAuthenticated=true;
+        
+        
       }
       else{
         this.isAuthenticated=false;
         this.route.navigate(['/login']);
+        console.log('In the else part');
+        console.log(user.uid == null ? 'nothing is there':user.uid);
       }
     }
     );

@@ -6,12 +6,14 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { UserInfoComponent } from './auth/user-info/user-info.component';
+import { PhoneLoginComponent } from './auth/phone-login/phone-login.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { UserInfoComponent } from './auth/user-info/user-info.component';
     EmployeeDetailsComponent,
     LoginComponent,
     SignUpComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PhoneLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { UserInfoComponent } from './auth/user-info/user-info.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
