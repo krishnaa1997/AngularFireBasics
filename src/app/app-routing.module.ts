@@ -4,6 +4,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {SignUpComponent} from './auth/sign-up/sign-up.component';
 import {EmployeeDetailsComponent} from './employee-details/employee-details.component';
 import { AuthGuard } from './services/auth.guard';
+import {PhoneLoginComponent} from './auth/phone-login/phone-login.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path:'signup', component: SignUpComponent
   },
+  {path : 'phonelogin', component: PhoneLoginComponent},
 {path: 'employee', component: EmployeeDetailsComponent, canActivate: [AuthGuard]}
 ];
 

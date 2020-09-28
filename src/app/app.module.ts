@@ -14,6 +14,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { UserInfoComponent } from './auth/user-info/user-info.component';
 import { PhoneLoginComponent } from './auth/phone-login/phone-login.component';
 import { FormsModule } from '@angular/forms';
+import { GoogleLoginComponent } from './auth/google-login/google-login.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SignUpComponent,
     UserInfoComponent,
-    PhoneLoginComponent
+    PhoneLoginComponent,
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,

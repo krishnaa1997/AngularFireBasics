@@ -1,4 +1,4 @@
-<div [hidden]="user">
+<!-- <div [hidden]="user">
     <h1>Sign In with Your Phone Number</h1>
   
     <label for="phone">Phone Number</label><br>
@@ -8,19 +8,66 @@
   
     <button (click)="sendLoginCode()">SMS Text Login Code</button>
   
-    <div *ngIf="windowRef.confirmationResult">
-      <hr>
-      <label for="code">Enter your Verification Code Here</label><br>
-      <input type="text" name="code" [(ngModel)]="verificationCode">
-  
-      <button (click)="verifyLoginCode()">Verify</button>
-    </div>
-  
-  </div>
-  
-  <!-- <div *ngIf="user">
-    You have successfully logged in with your phone number!
-  
-    UserId: {{ user?.uid }}
+
   
   </div> -->
+
+  <div class="container">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="text"><h3>Phone Login/signup</h3></div>
+    </nav>
+    <div class="form mt-5">
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+          <label for="phone">Phone Number</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" [(ngModel)]="phoneNumber"  class="input" placeholder="+918819976265">
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+          <div id="recaptcha-container"></div>
+        </div>
+        <div class="col-md-4">
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-warning" (click)="sendLoginCode()">SMS Text Login Code</button>
+        </div>
+        <div class="col-md-3">
+          
+        </div>
+      </div>
+
+      <div class="row" *ngIf="windowRef.confirmationResult">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+        <label for="code">Enter your Verification Code Here</label></div>
+        <div class="col-md-4">
+        <input type="text" name="code" [(ngModel)]="verificationCode"></div>
+        <div class="col-md-3">
+          
+        <button (click)="verifyLoginCode()">Verify</button></div>
+      </div>
+
+    </div>
+    </div>
+
+

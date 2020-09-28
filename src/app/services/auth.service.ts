@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,24 @@ export class AuthService {
 
   constructor(private fauth: AngularFireAuth, private route: Router) {
 
+   }
+
+   googleLogin()
+   {
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      //this.fauth.auth.
+      this.fauth.auth
+      .signInWithPopup(provider)
+      .then(res => {
+        this.isAuthenticated=true;
+        alert("Logged in successfully");
+        resolve(res);
+      }, err => {
+        console.log(err);
+        reject(err);
+      })
+    })
    }
 
    register(registerForm)
@@ -47,10 +66,12 @@ export class AuthService {
     this.fauth.authState.subscribe(user =>{
       if(user)
       {
-        this.userId=user.uid;
-        this.userMailId=user.email;
-        console.log(this.userId);
         this.isAuthenticated=true;
+        this.userId=user.uid;
+        this.route.navigate(['/employee']);
+        //this.userMailId=user.email;
+        console.log(this.userId);
+        
         
         
       }
@@ -58,7 +79,7 @@ export class AuthService {
         this.isAuthenticated=false;
         this.route.navigate(['/login']);
         console.log('In the else part');
-        console.log(user.uid == null ? 'nothing is there':user.uid);
+        //console.log(user.uid == null ? 'nothing is there':user.uid);
       }
     }
     );
